@@ -39,7 +39,7 @@ def get_random_question(filename, category):
     random_question = random.randint(0,counter)
     get_random_question = quesetion[random_question]
 
-            
+    #lets go
     
     return category, get_random_question
 
