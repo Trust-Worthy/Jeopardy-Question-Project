@@ -2,6 +2,7 @@ import csv
 import random
 import re
 from serpapi import GoogleSearch
+import json
 
 def num_questions(filename):
     """
@@ -13,9 +14,13 @@ def num_questions(filename):
         num = len(questions)
         return num
 def get_random_question(filename):
+    """
+    This function breaks up the contents of the CSV file. This file has almost every Jeopardy
+    question from December 2004
+    """
 
     category_dict = {} # this dict will store the number of each type of question in it along with the name of the category
-    question_answer_dict = {}
+    question_answer_dict = {} # this dict will store every question and every answer to that question
     with open(filename,encoding="utf-8") as file:
 
         csv_file = csv.reader(file)
@@ -53,14 +58,15 @@ def search_answer(qwery,api_key):
 
     search = GoogleSearch(params)
     results = search.get_json()
-
-    return results
+    json_object = json.dumps(results)
+    with open("search.json","w") as outfile:
+        outfile.write(json_object)
 
 def main():
-    question = get_random_question("JEOPardy_CSV.csv")
+    question = get_random_question("JEOPARDY_CSV.csv")
     print(question)
-    # answer = search_answer(question,"41096232330069c7f458ec7fe95a39f301220053fba1af409772c3ceea5d9fa0")
-    # print(answer)
+    search_answer(question,"41096232330069c7f458ec7fe95a39f301220053fba1af409772c3ceea5d9fa0")
+    
     
 if __name__ == "__main__":
     main()
