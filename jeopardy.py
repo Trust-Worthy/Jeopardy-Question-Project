@@ -39,9 +39,9 @@ def get_random_question(filename):
             else:
                 category_dict[category] += 1
 
-    question1, value = random.choice(list(question_answer_dict.items()))
+    question1, answer1 = random.choice(list(question_answer_dict.items()))
 
-    return question1 # this is a question
+    return question1,answer1 # this is a question
 
 
 def search_answer(qwery,api_key):
@@ -62,11 +62,36 @@ def search_answer(qwery,api_key):
     with open("search.json","w") as outfile:
         outfile.write(json_object)
 
+def simplify_json_search():
+  
+    # Opening JSON file
+    f = open('search.json')
+    
+    # returns JSON object as 
+    # a dictionary
+    data = json.load(f)
+    
+    # Iterating through the json
+    # list
+
+    
+    description = re.findall("description",data)
+    print(description)
+        
+        
+            
+        
+
+
+    
+    # Closing file
+    f.close()
+
 def main():
     question = get_random_question("JEOPARDY_CSV.csv")
     print(question)
     search_answer(question,"41096232330069c7f458ec7fe95a39f301220053fba1af409772c3ceea5d9fa0")
-    
-    
+    simplify_json_search()
+
 if __name__ == "__main__":
     main()
