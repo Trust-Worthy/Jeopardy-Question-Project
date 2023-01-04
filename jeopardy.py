@@ -73,19 +73,12 @@ def simplify_json_search():
     
     # Iterating through the json
     # list
-
-    
     description = re.findall("description",data)
-    print(description)
-        
-        
-            
-        
-
-
     
+
     # Closing file
     f.close()
+    return description
 
 def main():
     question = get_random_question("JEOPARDY_CSV.csv")
