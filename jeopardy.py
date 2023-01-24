@@ -62,35 +62,40 @@ def search_answer(qwery,api_key):
 
     search = GoogleSearch(params)
     results = search.get_json()
-    organic_results = results["organic_results"]
-    json_object = json.dumps(results)
+    return results
 
-    # with open("search.json","w") as outfile:
-    #     outfile.write(json_object)
+def write_jsontofile(json_object):
+    num = random.randint(0,777777777)
+    filename = "search" + str(num) + ".json" 
+    with open(filename,"w") as file:
+        json.dump(json_object,file)
 
-def simplify_json_search():
-  
-    # Opening JSON file
-    f = open('search.json')
-    
-    # returns JSON object as 
-    # a dictionary
-    data = json.load(f)
-    
-    # Iterating through the json
-    # list
-    description = re.findall("description",data)
-    
+def parse_json(filename):
+    with open(filename) as file:
+        data = json.load(file)
 
-    # Closing file
-    f.close()
-    return description
+        information = data["search_information"]
+        items = information["menu_items"]
+        for item in items:
+            print(item["link"])
+       
+    
 
 def main():
-    question = get_random_question("JEOPARDY_CSV.csv")
-    print(question)
-    #search_answer(question[0],"")
-    #simplify_json_search()
+    # question = get_random_question("JEOPARDY_CSV.csv")
+    # print(question)
+    # json_object = search_answer(question[0],"36df43dd74116ecb426552de7a41c51f2f46633809e1a3d04b30ce529f732644")
+    # write_jsontofile(json_object)
+
+    parse_json("search370879441.json")
+
+
+    
+    # for key in json_object.keys():
+    #     if key == "search_information":
+    #         for key in search_information
+    #     print(key)
+    
 
 if __name__ == "__main__":
     main()
