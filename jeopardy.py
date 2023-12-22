@@ -5,7 +5,10 @@ from serpapi import GoogleSearch
 import json
 import requests
 from dotenv import load_dotenv
+import os
 
+load_dotenv()
+api_key = os.getenv('api_key')
 
 def num_questions(filename):
     """
@@ -50,7 +53,7 @@ def get_random_question(filename):
 
     return question1,answer_category # this is a question
 
-def search_answer(qwery,api_key):
+def search_answer(qwery):
 
     params = {
     "api_key": api_key, # this is my api key
@@ -84,10 +87,10 @@ def parse_json(filename):
     
 
 def main():
-    # question = get_random_question("JEOPARDY_CSV.csv")
-    # print(question)
-    # json_object = search_answer(question[0],"36df43dd74116ecb426552de7a41c51f2f46633809e1a3d04b30ce529f732644")
-    # write_jsontofile(json_object)
+    question = get_random_question("JEOPARDY_CSV.csv")
+    print(question)
+    json_object = search_answer(question[0])
+    write_jsontofile(json_object)
 
     parse_json("search370879441.json")
 
