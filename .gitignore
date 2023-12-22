@@ -1,1 +1,3 @@
-api_key = 41096232330069c7f458ec7fe95a39f301220053fba1af409772c3ceea5d9fa0
+# Ignore files related to api keys
+.env
+

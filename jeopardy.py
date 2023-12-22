@@ -4,6 +4,8 @@ import re
 from serpapi import GoogleSearch
 import json
 import requests
+from dotenv import load_dotenv
+
 
 def num_questions(filename):
     """
