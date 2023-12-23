@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-api_key = os.getenv('api_key')
+api_key = os.getenv('SerpApi_key')
 
 def num_questions(filename):
     """
