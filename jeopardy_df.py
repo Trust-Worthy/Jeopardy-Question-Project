@@ -32,10 +32,7 @@ def create_df():
 
 
 def jeopardy_df_main():
-    question_df = create_df()
-    #show_df_info(question_df)
-    get_num_episodes(question_df)
-
+    create_df()
 
 if __name__ == "__main__":
     jeopardy_df_main()
